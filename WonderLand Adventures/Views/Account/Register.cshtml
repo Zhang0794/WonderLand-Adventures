@@ -1,0 +1,140 @@
+﻿@model WonderLandAdventures.Models.User
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | WonderLand Adventures</title>
+    <!-- 保留原有的样式部分，保持不变 -->
+    <style>
+        /* 原有的所有CSS样式保持不变 */
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="user-actions">
+            <a href="@Url.Action("Register", "Account")" class="btn btn-register">Register</a>
+            <a href="@Url.Action("Login", "Account")" class="btn btn-login">Login</a>
+        </div>
+        <div class="logo">WonderLand Adventures</div>
+        <div class="slogan">Where Magic Meets Adventure!</div>
+    </header>
+
+    <nav>
+        <a href="@Url.Action("Index", "Home")" class="nav-item" id="home">Home</a>
+        <a href="@Url.Action("Index", "Hotels")" class="nav-item" id="hotel">Hotels</a>
+        <a href="@Url.Action("Index", "Attractions")" class="nav-item" id="attractions">Attractions</a>
+        <a href="@Url.Action("About", "Home")" class="nav-item" id="about">About Us</a>
+        <a href="@Url.Action("Contact", "Home")" class="nav-item" id="contact">Contact</a>
+        <a href="@Url.Action("Index", "Tickets")" class="nav-item" id="tickets">Buy Tickets</a>
+    </nav>
+
+    <div class="page-header">
+        <h1>Join the Adventure!</h1>
+        <p>Create your WonderLand account to book tickets, save favorites, and receive exclusive offers!</p>
+    </div>
+
+    <div class="register-container">
+        <div class="register-form">
+            <h2 style="text-align: center; color: #ff6b6b; margin-bottom: 30px;">Create Your Account</h2>
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName)
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter your first name", required = "required" })
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName)
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter your last name", required = "required" })
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your email", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Create a password", required = "required" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm your password" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BirthDate)
+                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", type = "date", required = "required" })
+                    @Html.ValidationMessageFor(m => m.BirthDate)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", type = "tel", placeholder = "Enter your phone number" })
+                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        @Html.CheckBox("AgreeTerms", false, new { required = "required" })
+                        I agree to the <a href="#" style="color: #ff6b6b;">Terms of Service</a> and <a href="#" style="color: #ff6b6b;">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        @Html.CheckBoxFor(m => m.ReceiveOffers)
+                        I want to receive special offers and updates from WonderLand
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">Create Account</button>
+
+                <div class="login-prompt">
+                    Already have an account? <a href="@Url.Action("Login", "Account")">Sign in here</a>
+                </div>
+
+                <!-- 新增管理员登录按钮 -->
+                <div class="admin-login-prompt" style="margin-top: 20px; text-align: center;">
+                    <p>Are you an administrator? <a href="@Url.Action("Login", "Admin")" style="color: #ff6b6b; font-weight: bold;">Click here to login</a></p>
+                </div>
+            }
+        </div>
+
+        <!-- 保留原有的benefits部分 -->
+        <div class="benefits">
+            <!-- 原有的三个benefit-card保持不变 -->
+        </div>
+    </div>
+
+    <!-- 保留原有的footer部分 -->
+    <footer>
+        <!-- 原有的footer内容保持不变 -->
+    </footer>
+</body>
+</html>

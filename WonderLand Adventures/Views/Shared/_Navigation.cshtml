@@ -1,0 +1,40 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<header>
+    <div class="user-actions">
+        @if (Request.IsAuthenticated)
+        {
+            <span>Welcome, @User.Identity.Name!</span>
+            @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "btn btn-login" })
+        }
+        else
+        {
+            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-register" })
+            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-login" })
+        }
+    </div>
+    <div class="logo">@Html.ActionLink("WonderLand Adventures", "Index", "Home")</div>
+    <div class="slogan">Where Magic Meets Adventure!</div>
+</header>
+
+<nav>
+    @Html.ActionLink("Home", "Index", "Home", null,
+        new { @class = $"nav-item {(currentController == "Home" ? "active" : "")}", id = "home" })
+
+    @Html.ActionLink("Hotels", "Index", "Hotels", null,
+        new { @class = $"nav-item {(currentController == "Hotels" ? "active" : "")}", id = "hotel" })
+
+    @Html.ActionLink("Attractions", "Index", "Attractions", null,
+        new { @class = $"nav-item {(currentController == "Attractions" ? "active" : "")}", id = "attractions" })
+
+    @Html.ActionLink("Tickets", "Index", "Tickets", null,
+        new { @class = $"nav-item {(currentController == "Tickets" ? "active" : "")}", id = "tickets" })
+
+    @Html.ActionLink("About Us", "About", "Home", null,
+        new { @class = $"nav-item {(currentController == "Home" && ViewContext.RouteData.Values["action"]?.ToString() == "About" ? "active" : "")}", id = "about" })
+
+    @Html.ActionLink("Contact", "Contact", "Home", null,
+        new { @class = $"nav-item {(currentController == "Home" && ViewContext.RouteData.Values["action"]?.ToString() == "Contact" ? "active" : "")}", id = "contact" })
+</nav>

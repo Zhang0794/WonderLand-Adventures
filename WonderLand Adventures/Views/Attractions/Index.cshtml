@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WonderLandAdventures.Models.Attraction>
+
+@{
+    ViewBag.Title = "Attractions";
+}
+
+<h2>Our Amazing Attractions</h2>
+
+<div class="attractions-container">
+    @foreach (var attraction in Model)
+    {
+        <div class="attraction-card">
+            <img src="@attraction.ImageUrl" alt="@attraction.Name">
+            <div class="attraction-info">
+                <h3>@attraction.Name</h3>
+                <p>@attraction.Description</p>
+                <div class="attraction-details">
+                    <span>Minimum Height: @attraction.MinHeight</span>
+                    <span>Intensity: @attraction.Intensity</span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .attractions-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .attraction-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .attraction-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .attraction-info {
+        padding: 15px;
+    }
+
+        .attraction-info h3 {
+            color: #ff6b6b;
+            margin-top: 0;
+        }
+
+    .attraction-details {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 0.9em;
+        color: #666;
+    }
+</style>

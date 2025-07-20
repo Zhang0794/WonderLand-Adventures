@@ -1,0 +1,280 @@
+﻿@model WonderLandAdventures.Models.AboutViewModel
+@{
+    ViewBag.Title = "About Us";
+}
+
+<div class="page-header">
+    <h1>Our Story</h1>
+    <p>Discover the magic behind WonderLand Adventures - where dreams come true since 1985</p>
+</div>
+
+<div class="about-container">
+    <div class="founder-section">
+        <img src="@Model.Founder.ImageUrl" alt="@Model.Founder.Name" class="founder-image">
+        <div class="founder-info">
+            <h2>@Model.Founder.Name</h2>
+            <p>@Model.Founder.Bio</p>
+        </div>
+    </div>
+
+    <div class="history-section">
+        <h2 class="section-title">Our History</h2>
+        <div class="history-timeline">
+            @foreach (var item in Model.History)
+            {
+                <div class="timeline-item">
+                    <div class="timeline-year">@item.Year</div>
+                    <div class="timeline-content">
+                        <h3>@item.Title</h3>
+                        <p>@item.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="team-section">
+        <h2 class="section-title">Meet Our Magic Makers</h2>
+        <div class="team-members">
+            @foreach (var member in Model.TeamMembers)
+            {
+                <div class="team-member">
+                    <img src="@member.ImageUrl" alt="@member.Name" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">@member.Name</h3>
+                        <p class="member-position">@member.Position</p>
+                        <p class="member-bio">@member.Bio</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        :root {
+            --hotel: #FF9AA2;
+            --attractions: #FFB7B2;
+            --about: #FFDAC1;
+            --contact: #E2F0CB;
+            --tickets: #B5EAD7;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 50px 0 30px;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+            .page-header h1 {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .founder-section {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .founder-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #ffbe76;
+            margin-right: 40px;
+        }
+
+        .founder-info h2 {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+
+        .founder-info p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .history-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .history-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 50px;
+        }
+
+            .history-timeline:before {
+                content: '';
+                position: absolute;
+                left: 20px;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background: linear-gradient(to bottom, #ff6b6b, #74b9ff);
+            }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+            .timeline-item:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+            }
+
+        .timeline-year {
+            position: absolute;
+            left: -50px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+            .section-title:after {
+                content: '';
+                display: block;
+                width: 100px;
+                height: 5px;
+                background: linear-gradient(to right, #ff6b6b, #74b9ff);
+                margin: 15px auto 0;
+                border-radius: 5px;
+            }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .team-member {
+            width: 250px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+            .team-member:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+        .member-photo {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+
+        .member-position {
+            color: #74b9ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .member-bio {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @@media (max-width: 768px) {
+            .founder-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .founder-image {
+                margin-right: 0;
+                margin-bottom: 30px;
+                width: 200px;
+                height: 200px;
+            }
+
+            .history-timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-year {
+                left: -35px;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+}

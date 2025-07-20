@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WonderLandAdventures.Models.Hotel>
+
+@{
+    ViewBag.Title = "Hotels";
+}
+
+<h2>Our Partner Hotels</h2>
+
+<div class="hotels-container">
+    @foreach (var hotel in Model)
+    {
+        <div class="hotel-card">
+            <img src="@hotel.ImageUrl" alt="@hotel.Name">
+            <div class="hotel-info">
+                <h3>@hotel.Name</h3>
+                <div class="rating">
+                    @for (int i = 0; i < hotel.Rating; i++)
+                    {
+                        <span>★</span>
+                    }
+                </div>
+                <p>@hotel.Description</p>
+                <div class="price">From $@hotel.PricePerNight per night</div>
+                @Html.ActionLink("Book Now", "Book", new { id = hotel.Id }, new { @class = "book-btn" })
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .hotels-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .hotel-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .hotel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hotel-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .hotel-info {
+        padding: 20px;
+    }
+
+        .hotel-info h3 {
+            color: #ff6b6b;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+    .rating {
+        color: #ffbe76;
+        margin-bottom: 10px;
+    }
+
+    .price {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 15px 0;
+        color: #333;
+    }
+
+    .book-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff6b6b;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+        .book-btn:hover {
+            background-color: #ff5252;
+        }
+</style>
